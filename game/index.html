@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ember Duel — a card duel vs Nyx, the Cinder Witch</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="logo">🔥 EMBER DUEL <small>— clash of the spark mages</small></div>
+  <div class="score-box">
+    <span>Score <b id="score-num">0</b></span>
+    <span>Damage <b id="dmg-num">0</b></span>
+    <span>Cards played <b id="cards-num">0</b></span>
+  </div>
+  <div class="hdr-btns">
+    <button id="sound-btn" type="button">🔊 Sound on</button>
+    <button id="how-btn" type="button">How to play</button>
+    <button id="new-game" type="button">↻ New game</button>
+  </div>
+</header>
+
+<main id="table">
+  <!-- Opponent -->
+  <section class="fighter-row" id="ai-row">
+    <div class="portrait" id="ai-portrait">
+      <div class="avatar">🧙‍♀️</div>
+      <div class="fname">Nyx</div>
+      <div class="ftitle">the Cinder Witch</div>
+      <div class="hp-wrap">
+        <div class="hp-bar"><div class="hp-fill" id="a-hp-fill" style="width:100%"></div></div>
+        <div class="hp-num">❤ <span id="a-hp-num">30 / 30</span></div>
+        <span class="block-badge" id="a-block" style="display:none"></span>
+      </div>
+      <div class="mana-row">Mana <span id="a-mana"></span></div>
+      <div class="deck-count" id="a-deck">Deck 20</div>
+    </div>
+    <div class="hand-zone">
+      <div class="hand-label">Nyx's hand — face down</div>
+      <div class="hand" id="ai-hand"></div>
+    </div>
+  </section>
+
+  <!-- Middle of the table -->
+  <section class="middle">
+    <div id="last-played"><div class="vs">⚔ VS ⚔</div></div>
+    <div id="log"></div>
+    <div class="controls">
+      <div id="turn-label">Your turn — Turn 1</div>
+      <button id="end-turn" type="button">End Turn ⏎</button>
+      <div class="hint">Click a glowing card to play it.<br>Keys: 1–7 play a card · E end turn · R restart</div>
+    </div>
+  </section>
+
+  <!-- Player -->
+  <section class="fighter-row" id="player-row">
+    <div class="portrait" id="player-portrait">
+      <div class="avatar">🧑‍🎤</div>
+      <div class="fname">You</div>
+      <div class="ftitle">Ember Mage</div>
+      <div class="hp-wrap">
+        <div class="hp-bar"><div class="hp-fill" id="p-hp-fill" style="width:100%"></div></div>
+        <div class="hp-num">❤ <span id="p-hp-num">30 / 30</span></div>
+        <span class="block-badge" id="p-block" style="display:none"></span>
+      </div>
+      <div class="mana-row">Mana <span id="p-mana"></span></div>
+      <div class="deck-count" id="p-deck">Deck 20</div>
+    </div>
+    <div class="hand-zone">
+      <div class="hand-label">Your hand — click a glowing card to play it</div>
+      <div class="hand" id="player-hand"></div>
+    </div>
+  </section>
+</main>
+<footer>Ember Duel — an original card game. No network, no accounts, just you, Nyx, and 24 cards of trouble.</footer>
+
+<!-- Title screen -->
+<div class="overlay" id="title-screen">
+  <div class="panel">
+    <h1>🔥 EMBER DUEL</h1>
+    <h2>A card duel against Nyx, the Cinder Witch</h2>
+    <p>You are the Ember Mage. Nyx has challenged you to a duel of cards: play
+    strikes, guards and mends from your hand, spend your mana wisely, and burn
+    her 30 health to zero before she burns yours.</p>
+    <p>Four elements, eight cards, endless second-guessing: block when she is
+    about to hit hard, heal when you are low, and save your Meteor Fall for
+    the killing blow.</p>
+    <button class="big-btn" id="start-btn" type="button">▶ Start Duel</button>
+    <div class="best-line" id="best-score"></div>
+    <div id="how-panel" class="hidden">
+      <ul>
+        <li>Each turn you gain mana (3, then +1 a turn, up to 10) and draw 2 cards.</li>
+        <li>Click a glowing card to play it. Its blue gem is its mana cost.</li>
+        <li>🛡 Block soaks damage until your next turn, then fades.</li>
+        <li>Reduce Nyx to 0 health to win. Fall to 0 and the duel is hers.</li>
+        <li>Keys: 1–7 play a card, E ends your turn, R starts a new duel.</li>
+      </ul>
+      <button class="big-btn" id="title-again-btn" type="button" style="font-size:16px;padding:10px 26px">Got it — Start Duel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Win / loss screen -->
+<div class="overlay hidden" id="end-screen">
+  <div class="panel">
+    <div class="end-title win" id="end-title">🏆 VICTORY!</div>
+    <p id="end-sub"></p>
+    <div id="end-score">Score: 0</div>
+    <div id="end-stats"></div>
+    <button class="big-btn" id="again-btn" type="button">↻ Duel Again</button>
+  </div>
+</div>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
